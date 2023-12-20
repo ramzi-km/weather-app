@@ -63,8 +63,8 @@ function handleWeatherSearch() {
         case 'Mist':
           image.src = 'images/mist.png';
           break;
-        case 'Mist':
-          image.src = 'images/mist.png';
+        case 'Haze':
+          image.src = 'images/haze.png';
           break;
         default:
           image.src = '';
