@@ -2,11 +2,22 @@ const container = document.querySelector('.container');
 const search = document.querySelector('.search-box button');
 const weatherBox = document.querySelector('.weather-box');
 const weatherDetails = document.querySelector('.weather-details');
-const error404 = document.querySelector('.error404');
+const error404 = document.querySelector('.not-found');
+const input = document.querySelector('.search-box input');
+
+input.addEventListener('keydown', function (event) {
+  if (event.keyCode === 13) {
+    handleWeatherSearch();
+  }
+});
 
 search.addEventListener('click', () => {
+  handleWeatherSearch();
+});
+
+function handleWeatherSearch() {
   const apiKey = '865bc3bc5b33a06c4b372882509b3a6e';
-  const city = document.querySelector('.search-box input').value;
+  const city = input.value;
   if (city === '') {
     return;
   }
@@ -30,12 +41,13 @@ search.addEventListener('click', () => {
       error404.classList.remove('fadeIn');
 
       const image = document.querySelector('.weather-box img');
-      const temperature = document.querySelector('.weather-box temperature');
-      const description = document.querySelector('.weather-box description');
+      const temperature = document.querySelector('.weather-box .temperature');
+      const description = document.querySelector('.weather-box .description');
       const humidity = document.querySelector(
         '.weather-details .humidity span'
       );
       const wind = document.querySelector('.weather-details .wind span');
+      console.log(res.weather[0].main);
 
       switch (res.weather[0].main) {
         case 'Clear':
@@ -47,7 +59,7 @@ search.addEventListener('click', () => {
         case 'Snow':
           image.src = 'images/snow.png';
           break;
-        case 'Cloud':
+        case 'Clouds':
           image.src = 'images/cloud.png';
           break;
         case 'Haze':
@@ -67,4 +79,4 @@ search.addEventListener('click', () => {
       weatherDetails.classList.add('fadeIn');
       container.style.height = '590px';
     });
-});
+}
