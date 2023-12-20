@@ -27,7 +27,6 @@ function handleWeatherSearch() {
   )
     .then((res) => res.json())
     .then((res) => {
-      console.log(res);
       if (res.cod === '404') {
         container.style.height = '400px';
         weatherBox.style.display = 'none';
@@ -47,7 +46,6 @@ function handleWeatherSearch() {
         '.weather-details .humidity span'
       );
       const wind = document.querySelector('.weather-details .wind span');
-      console.log(res.weather[0].main);
 
       switch (res.weather[0].main) {
         case 'Clear':
@@ -62,7 +60,7 @@ function handleWeatherSearch() {
         case 'Clouds':
           image.src = 'images/cloud.png';
           break;
-        case 'Haze':
+        case 'Mist':
           image.src = 'images/mist.png';
           break;
         default:
